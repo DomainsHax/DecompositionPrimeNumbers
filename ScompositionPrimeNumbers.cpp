@@ -1,31 +1,30 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
+bool prime_verify(int prime)
+{
+    int n_divisible = 1; //because the number is always divisible for himself
+     
+    for(int i = 1; i <= (prime/2); i++)
+        if(prime%i == 0)
+	    n_divisible++;
+
+    if(n_divisible == 2) return true;
+    return false;
+}
 
 int main()
 {
     int number;
-    vector<int> prime_numbers;
+    std::vector<int> prime_numbers;
   
-    cout << "enter the number: ";
-    cin >> number;
+    std::cout << "enter the number: ";
+    std::cin >> number;
 
-    for(int prime = 1; prime <= number; prime++)
-    {
-        if(prime == number || prime <= (number/2))
-        {
-            int n_divisible = 0;
-       
-            for(int i = 1; i <= prime; i++)
-                if(i == prime || i <= (prime/2))
-                    if(prime%i == 0)
-                        n_divisible++;
- 
-	    if(n_divisible == 2)
-	        prime_numbers.push_back(prime);
-	}
-    }
+    for(int prime = 1; prime <= (number/2); prime++)
+        if(prime_verify(prime)) prime_numbers.push_back(prime);
+
+    if(prime_verify(number)) prime_numbers.push_back(number);
   
     while(number != 1)
     {
@@ -35,7 +34,7 @@ int main()
 	    if(number%prime == 0)
 	    {
 		number = number/prime;
-		cout << "Divisible for: " << prime << '\n';
+		std::cout << "Divisible for: " << prime << '\n';
 	    }
 	}
     }
