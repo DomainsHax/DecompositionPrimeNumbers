@@ -1,1 +1,1 @@
-# ScompositionPrimeNumbers
+# DecompositionPrimeNumbers
