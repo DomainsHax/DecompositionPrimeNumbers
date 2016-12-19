@@ -3,10 +3,10 @@
 
 bool prime_verify(int prime)
 {
-    int n_divisible = 1; //because the number is always divisible for himself
+    int n_divisible = 2; //because the number is always divisible for himself and 1
      
-    for(int i = 1; i <= (prime/2); i++)
-        if(prime%i == 0)
+    for(int i = 3; i <= (prime/2); i+=2)
+        if(prime%i == 0 || prime%2 == 0)
 	    n_divisible++;
 
     if(n_divisible == 2) return true;
@@ -16,12 +16,12 @@ bool prime_verify(int prime)
 int main()
 {
     int number;
-    std::vector<int> prime_numbers;
+    std::vector<int> prime_numbers{2};
   
     std::cout << "enter the number: ";
     std::cin >> number;
 
-    for(int prime = 1; prime <= (number/2); prime++)
+    for(int prime = 3; prime <= (number/2); prime+=2)
         if(prime_verify(prime)) prime_numbers.push_back(prime);
 
     if(prime_verify(number)) prime_numbers.push_back(number);
